@@ -52,7 +52,7 @@ class UniformQuantize(InplaceFunction):
         qmax = 2.**num_bits - 1.
         #import pdb; pdb.set_trace()
         scale = (max_value - min_value) / (qmax - qmin)
-
+        #scale一般都是很小的数，weight和activation数值较小，分母qmax-qmin在8bit时256位
         scale = max(scale, 1e-8)
 
         if enforce_true_zero:
